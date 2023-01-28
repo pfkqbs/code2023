@@ -31,7 +31,7 @@
 - 学习 `Vue` 之前要掌握的 `JavaScript` 基础知识？
 	- `ES6` 语法规范
 	- `ES6` 模块化
-	- 包管理器 (npm yarn cnpm)
+	- 包管理器 (`npm` `yarn` `cnpm`)
 	- 原型、原型链
 	- 数组常用方法
 	- `axios`
@@ -59,7 +59,7 @@
 	- 关闭了 开发版本的提示
 - 设置 `Vue.config` 的设置 关闭开发版本的提示 `Vue.config.productionTip = false `
 
-## `vue` Hello World 案例
+## `vue` `Hello World` 案例
 ```html
 <!-- 准备好一个容器 -->
 <div id="demo">
