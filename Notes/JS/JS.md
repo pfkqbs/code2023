@@ -24,18 +24,17 @@
 
 ### 1.1.2 如何使用 `JavaScript`
 
-- 在何处编写 `JavaScript`
+- 在何处编写 `JavaScript  `     答案是： 2处
 
-  - 2处
-    - `HTML` 网页中的 `script` 标签内
-      - 问题: 无法重用
-        - 程序的准则: `DRY`
-        - 尽量:一次定义，处处使用，一次修改，处处生效
-      - 解决
-    - 在独立的 `js` 文件中编写 `JavaScript`
-      - 再用 `script` 标签引入网页中`<script src="url"></script>`
+  - **1.`HTML` 网页中的 `script` 标签内**
+    - 问题: 无法重用
+      - 程序的准则: `DRY`
+      - 尽量:一次定义，处处使用，一次修改，处处生效
+    - 解决
+  - **2.在独立的 `js` 文件中编写 `JavaScript`**
+    - 再用 `script` 标签引入网页中`<script src="url"></script>`
 
-- 如何运行
+- 如何运行？
 
   - 脚本解释引擎   -- >   解析并执行 `js` 程序的小软件
   - 如何
@@ -78,13 +77,11 @@
 - 向网页中输出内容
   - `document.write("HTML片段或文字")`
   - 问题: 影响网页中现有结构和内容
-- 弹出警告框  
-  - `alert("提示内容...")`
+- 弹出警告框     `alert("提示内容...")`
   - 问题:
     - 样式写死，不可定制修改
     - 模态，阻碍用户操作
-- 向控制台输出:
-  - `console.log("输出内容...")`
+- 向控制台输出:     `console.log("输出内容...")`
 - 今后，凡是调试程序，查看输出结果，都要在控制台输出
 
 ### 1.1.5控制台的使用
@@ -238,11 +235,10 @@
         - 汉字2字节
 
 - `boolean`
-
-  - 什么是:  专门表示判断结果的
+- 什么是:  专门表示判断结果的
   - 何时:  只要作为判断条件的结论时
   - 如何:  只有两个值:`true`/`false`,不加引号
-
+  
 - `undefined`
   - 空:  专门由程序自动为一个变量赋初值    程序员很少主动使用
 
@@ -433,7 +429,7 @@
 
     ```js
     function 函数名(参数列表){
-     函数体;
+     //函数体;
      return 返回值;
     }
     ```
@@ -1131,6 +1127,7 @@
     - 上取整: `Math.ceil(num)`
     - 下取整: 
            - `Math.floor(num)`
+  
     		只能对纯数字内容下取整, 如果传入的不是数字，就自动调用`Number(x)`隐式转换为数字
     	- `vs parseInt(str)`
     		- 先去掉字符串后非数字字符，再省略小数部分
@@ -1144,9 +1141,9 @@
       	
       - `vs num.toFixed(d)`
       	返回值`string`,必须先转换，再计算,可以按任意小数位数四舍五入
-      	
-      - 自定义`round`
-
+      
+    - 自定义`round`
+  
            ```js
            function round(num,d){
                    num *= Math.pow(10,d);
@@ -1441,13 +1438,15 @@
        ```js
        var obj = {
        	属性名: 属性值,
+       ```
+  
    	属性名: 属性值 ,
-       	//...
+   	 	//...
    	方法名: function(){
-       		... 
+   	 		... 
    		this.属性名...
-       	}
-       }
+   	 	}
+   	 }
    ```
        
        ES6 
@@ -1461,70 +1460,72 @@
        	}
     
     
-    
-    - 何时: 在创建对象时，已知对象的成员
+	  
+	  - 何时: 在创建对象时，已知对象的成员
 		- 问题:  对象自己的方法，访问自己的属性，如果不加this，仅会在作用域链中找，不会在对象中找
-		- 解决:  
+  	- 解决:  
 			
     		- `this.属性名`,今后，只要对象自己的方法要访问自己的属性，必须用`this.`属性名
 			
-  		- 强调: 不带`this.`的变量，在作用域链中查找, `this.`属性在当前对象和当前对象的原型链中找
+			- 强调: 不带`this.`的变量，在作用域链中查找, `this.`属性在当前对象和当前对象的原型链中找
 	
 	 	2. 用`new`
 	 	- 先创建一个空对象 `var obj = new Object();`   === `{}`
+	 ```
  		- 简写:  `new`可省略，()可省略，但不能同时省略,可推广到其它内置对象
 	 	- 为新对象添加新属性
-	 	
+	
  		- `obj.属性名 = 属性值`
 	 		- `obj.方法名 = function(){ ... this.属性名 ... }`
 	 	
 	 	- 何时: 在创建对象时，暂时不知道对象的成员
-   	- 揭示:  `js`中一切对象底层都是关联数组
+        	  	 		- 揭示:  `js`中一切对象底层都是关联数组
 	 		- 相同
  			- `obj.属性名`  等效于  `obj["属性名"]`,只要访问对象的属性时，属性名是变化的变量，就只能用[变量]
-   			- for in 遍历每个成员
-	 	
-   				- ```js
+        	  	 				- for in 遍历每个成员
+	 	 	 	
+        	  	 					- ```js
+
    				  for(var key in obj){
    	          	  	 key //当前属性名
-	 	          	  	 obj[key]  //当前属性值
-	 	          	  }
-	 				  ```
-	 				  
-	 			- 访问不存在的属性，不报错，返回 `undefined`
-	 			- 强行给不存在的属性赋值，不报错，自动添加该属性
-	 		- 不同，类型不同，`API`不通用
-	 	- 问题: 反复创建多个相同结构的对象时，会造成大量重复的代码
-	 	- 解决: 用构造函数反复创建多个相同结构的对象
-	3. 用构造函数
-		- 什么是:规定一类对象统一结构的函数
-		- 何时:反复创建多个相同结构的对象
-		- 作用:
-  		- 1. 描述统一的结构
-			- 2. 将空对象构建成要求的结构
-	
-  	- 如何 2步
-		1. 定义构造函数
-			```js
-				function 类型名(属性参数){
-				this.属性名=  属性参数;
-				/*
-				this.方法名 = function(){
-				... this.属性名 ...
-				}*
-				///js中强烈不推荐将方法定义在构造函数中
-			}
-			```
-		2. 用`new`调用构造函数
-			- 实例化一个对象: `var obj=new 类型名(属性值)`
-			- new 都做了什么？
-				1. 创建一个新的空对象
-				2. 设置新的子对象的 `__proto__` 继承构造函数的 `prototype` 对象
-				3. 调用构造函数，将构造函数中的 `this` 自动替换为当前新对象,构造函数将规定的属性添加到新对象中，并将传入的参数值保存在新对象的新属性中
-				4. 返回新对象的地址保存到变量中
-  		- 优:  代码重用
-  		- 问题:  无法节约内存,放在构造函数中的方法定义，每 `new` 一次，都会创建函数对象副本
-  		- 解决:  继承
+   	 	          	  	 obj[key]  //当前属性值
+   	 	          	  }
+   	 				  ```
+   	 				  
+   	 			- 访问不存在的属性，不报错，返回 `undefined`
+   	 			- 强行给不存在的属性赋值，不报错，自动添加该属性
+   	 		- 不同，类型不同，`API`不通用
+   	 	- 问题: 反复创建多个相同结构的对象时，会造成大量重复的代码
+   	 	- 解决: 用构造函数反复创建多个相同结构的对象
+   	3. 用构造函数
+   		- 什么是:规定一类对象统一结构的函数
+   		- 何时:反复创建多个相同结构的对象
+   		- 作用:
+   		- 1. 描述统一的结构
+   			- 2. 将空对象构建成要求的结构
+   	
+   	- 如何 2步
+   		1. 定义构造函数
+   			```js
+   				function 类型名(属性参数){
+   				this.属性名=  属性参数;
+   				/*
+   				this.方法名 = function(){
+   				... this.属性名 ...
+   				}*
+   				///js中强烈不推荐将方法定义在构造函数中
+   			}
+   			```
+   		2. 用`new`调用构造函数
+   			- 实例化一个对象: `var obj=new 类型名(属性值)`
+   			- new 都做了什么？
+   				1. 创建一个新的空对象
+   				2. 设置新的子对象的 `__proto__` 继承构造函数的 `prototype` 对象
+   				3. 调用构造函数，将构造函数中的 `this` 自动替换为当前新对象,构造函数将规定的属性添加到新对象中，并将传入的参数值保存在新对象的新属性中
+   				4. 返回新对象的地址保存到变量中
+   		- 优:  代码重用
+   		- 问题:  无法节约内存,放在构造函数中的方法定义，每 `new` 一次，都会创建函数对象副本
+   		- 解决:  继承
 ### this
 - 什么是：自动引用正在调用当前方法的 `·` 前的对象
 - 为什么: 
@@ -1653,527 +1654,557 @@
   	return child;
   }
   ```
-   
-  ```
-  		1. 两种类型间的继承
-  			何时:
-  				如果发现多个类型拥有部分相同的属性结构和方法定义
-  					都要抽象父类型
-  			如何
-  				2步: 
-  					1. 定义抽象父类型
-  						相同的属性结构定义在父类型的构造函数中
-  						相同的方法定义在父类型的原型对象中
-  					2. 让子类型继承父类型
-  						1. 在子类型构造函数中借用父类型构造
-  							extends
-  								让父类型构造函数帮助添加相同部分的属性定义
-  								子类型构造函数仅负责添加独有的属性定义即可
-  							错误:
-  								直接调用父类型构造函数
-  									this->window
-  										父类型中的属性都泄露到全局
-  							正确
-  								父类型构造.call(this, 参数1,参数2,...)
-  								简写:
-  									父类型构造.apply(this, arguments)
-  							鄙视:
-  								call vs apply
-  									相同:
-  										都是强行借用一个本来无法调用的函数，并临时替换函数中this为指定对象
-  									不同: 
-  										call
-  											传入借用函数的参数，必须单独传入，逗号分隔
-  										apply
-  											传入借用函数的参数，放在一个数组中整体传入
-  											可自动打散数组类型参数
-  						2. 让子类型原型对象继承父类型原型对象
-  							inherits
-  							Object.setPrototypeOf(
-   子类型构造.prototype, 父类型构造.prototype
-  )
-  ES5
-  	对对象的保护
-  		对象的属性
-  			命名属性
-  				可直接用.访问到的属性
-  				分为
-  					数据属性
-  						实际存储属性值的属性
-  						四大特性
-  							{
-   value: 属性值,
-   writable: true/false,  //控制是否可修改
-   enumerable: true/false, //控制是否可被for in遍历
-   configurable: true/false, //1. 控制是否可删除
-                                          //2. 控制是否可修改前两个特性
-  }
-  							强调
-  								configurable一旦改为false，不可逆
-  					访问器属性
-  						不实际存储数据，专门提供对其它数据/变量的保护
-  						何时
-  							1. 用自定义规则保护属性时
-  								比如
-  									age属性必须介于18~65之间
-  							2. 为对象添加虚拟属性
-  								fullName
-  									获取时
-  										firstName+lastName
-  									赋值时
-  										将fullName按空格分隔，一半给firstName，另一半给lastName
-  						2步:
-  							3. 定义一个隐藏的数据属性实际存储属性值
-  							4. 定义访问器属性专门读写隐藏的数据属性
-  						四大特性
-  							{
-    get:function(){return this.隐藏属性;},
-    set:function(val){
-        //如果val符合条件
-            this.隐藏属性=val
-        //否则
-            报错
-    },
-    enumerable, configurable
-  }
-  								试图用访问器属性读取受保护的值时，自动调用get方法
-  								试图用访问器属性修改受保护的值时，自动调用set方法，参数val可自动获得要赋的新值
-  							如果省略set方法，则该访问器属性相当于只读
-  				获取一个属性的四大特性
-  					var attrs=Object.getOwnPropertyDescriptor(obj,"属性名")
-  					attrs: {四大特性}
-  				修改四大特性
-  					只改一个属性的四大特性
-  						Object.defineProperty(obj,"属性名",{
-    特性名:值,
-          ... : ...
-  })
-  					同时修改多个属性的四大特性
-  						Object.defineProperties(obj,{
-    属性名1: {
-        特性名:值,
-          ... : ...
-    },
-    属性名2: {四大特性}
-  })
-  					强调:
-  						双保险
-  							修改writable或enumerable时，最好同时定义configurable为false，禁止反向修改
-  						要修改的属性不存在，会自动添加该属性
-  				特性的默认值
-  					用.添加的新属性
-  						特性的默认值为true
-  					defineProperty/defineProperties添加的新属性
-  						特性的默认值为false
-  			内部属性
-  				不能用.访问到的属性
-  				__proto__
-  					Object.getPrototypeOf(obj)
-  					Object.setPrototypeOf(child,father)
-  				class
-  					Object.prototype.toString.call(obj)
-  				extensible:true
-  					var bool=Object.isExtensible(obj)
-  					Object.preventExtensions(obj)
-  		防篡改
-  			1. 防扩展
-  				禁止添加新属性
-  					相当于
-  						将对象的extensible：false
-  				判断是否已禁止扩展
-  					Object.isExtensible(obj)
-  				设置防扩展
-  					Object.preventExtensions(obj)
-  			2. 密封
-  				在防扩展同时，禁止删除现有属性
-  					相当于
-  						将每个属性的configurable:false
-  							其他属性在修改特性时，不必反复修改configurable:false
-  				判断是否已密封
-  					Object.isSealed(obj)
-  				密封对象
-  					Object.seal(obj)
-  				最像Java的构造函数
-  					function Emp(id,ename,salary,age){
-    this.id=id;
-  this.ename=ename;
-  this.salary=salary;
-  
-  Object.defineProperties(this,{
-    id:{writable:false},
-    salary:{enumerable:false},
-    _age:{
-      writable:true,
-      enumerable:false
-    },
-    age:{
-     get:function(){return this._age;},
-     set:function(val){
-       if(val<18||val>65)
-         throw new Error(...)
-       this._age=val;   
-     },
-     enumerable:true
-    }
-  });
-  this.age=age;
-  
-  //防篡改:
-  Object.seal(this);//密封
-  } 
-  						鄙视: 
-  							实现一个js类型，包含public属性和private属性
-  			3. 冻结
-  				在密封同时，禁止修改所有属性的值
-  					相当于
-  						将每个属性的writable:false
-  				判断是否被冻结
-  					Object.isFrozen(obj);
-  				冻结对象
-  					Object.freeze(obj)
-  				何时:
-  					如果一个对象中所有属性值都不允许擅自修改
-  	call/apply/bind()
-  		何时: 
-  			只要函数中的this不是想要的，就可用call/apply/bind替换
-  		call和apply
-  			立刻调用函数执行
-  			同时临时替换函数中的this
-  			何时
-  				如果立刻执行，且临时替换this
-  			如何
-  				fun.call(obj, 参数值列表)
-  					调用fun
-  					替换fun中的this为obj
-  					将参数值列表传递给fun
-  				fun.apply(obj, 参数值数组)
-  					vs call
-  						apply要求传入fun的参数必须放在数组中整体传入
-  						apply可自动将数组打散为单个参数值分别传入
-  		bind
-  			基于一个现有函数，创建一个新函数，并永久绑定this和部分参数
-  			何时:
-  				只要替换回调函数中的this时
-  			如何:
-  				var newFun=fun.bind(obj, 参数值列表 )
-  					创建一个和fun功能完全一样的新函数
-  					永久绑定新函数中的this为obj
-  					永久绑定新函数中的部分参数为参数值列表中的值
-  				强调: 
-  					被bind创建的函数中的this和绑定的变量，任何情况下不能再被call替换
-  	数组API
-  		判断
-  			判断arr中每个元素是否都符合条件
-  				arr.every(function(val,i,arr){
-        //val: 当前元素值
-        //i : 当前位置
-        //arr : 当前数组
-        return 判断条件;
-  })
-  			只判断arr中是否包含符合条件的元素
-  				arr.some(function(val,i,arr){
-        return 判断条件;
-  })
-  		遍历
-  			对数组中每个元素执行相同的操作
-  				直接修改原数组
-  					arr.forEach(function(val,i,arr){
-        arr[i]=新值;
-  })
-  						IE8
-  							Array.prototype.forEach=function(callback){
-        for(var i=0;i<this.length;i++){
-        if(this[i]!==undefined)//防稀疏数组
-            callback(this[i],i,this);
-        }
-  }
-  				不修改原数组，返回新数组
-  					var newArr=arr.map(function(val,i,arr){
-        return 修改后的新值
-  })
-  						IE8
-  							Array.prototype.map=function(callback){
-        for(var i=0,result=[];i<this.length;i++){
-        if(this[i]!==undefined)//防稀疏数组
-            result[i]=callback(this[i],i,this);
-        }
-        return result;
-  }
-  					其实map也可像forEach一样使用
-  				回调函数中的this，指window
-  		过滤和汇总
-  			过滤
-  				选取arr中符合条件的元素组成新的子数组
-  				var subArr=arr.filter(function(val,i,arr){
-        return 判断条件
-  })
-  			汇总
-  				将数组中每个元素值汇总出一个结果
-  				var r=arr.reduce(function(prev,val,i,arr){
-        return prev+val;
-  }, 初始值)
-  	严格模式
-  		何时:
-  			1. 新项目，都要启用严格模式
-  			2. 旧项目，逐个模块向严格模式迁移
-  			如何
-  				2个范围
-  					整个代码块或js文件启用严格模式
-  						在代码块或js文件的开头插入: "use strict";
-  					仅在一个函数内启用严格模式
-  						在function内，函数体顶部插入: "use strict";
-  			要求:
-  			1. 禁止给未声明的变量赋值
-  			2. 静默失败升级为错误
-  			3. 普通函数调用或匿名函数自调中的this不再默认指向window，而是undefined
-  			4. `arguments`, `arguments.callee`不推荐使用
-  ```
+
+4. 两种类型间的继承
+
+  - 何时:如果发现多个类型拥有部分相同的属性结构和方法定义, 都要抽象父类型
+
+  - 如何 2步: 
+
+    - 定义抽象父类型
+      	相同的属性结构定义在父类型的构造函数中
+      	相同的方法定义在父类型的原型对象中
+
+    - 让子类型继承父类型
+
+      - 在子类型构造函数中借用父类型构造
+        	extends
+        		让父类型构造函数帮助添加相同部分的属性定义
+        		子类型构造函数仅负责添加独有的属性定义即可
+      - 错误:
+        		直接调用父类型构造函数
+          			this->window
+          				父类型中的属性都泄露到全局
+      - 正确
+        		父类型构造.call(this, 参数1,参数2,...)
+          		简写:
+          			父类型构造.apply(this, arguments)
+      - 鄙视:
+        - call vs apply
+          - 相同: 都是强行借用一个本来无法调用的函数，并临时替换函数中this为指定对象
+          - 不同: 
+            - call:  传入借用函数的参数，必须单独传入，逗号分隔
+            - apply:  传入借用函数的参数，放在一个数组中整体传入,可自动打散数组类型参数
+
+    - 让子类型原型对象继承父类型原型对象
+
+      -  inherits
+
+      - ```js
+        Object.setPrototypeOf(
+          子类型构造.prototype, 父类型构造.prototype
+        )                           
+        ```
+
+
+## ES5
+
+### 对对象的保护
+
+#### 	对象的属性
+
+#####	命名属性
+- 可直接用.访问到的属性
+
+- 分为
+	- 数据属性：实际存储属性值的属性
+    
+		- 四大特性
+		
+			{
+			       value: 属性值,
+			       writable: true/false,  //控制是否可修改
+			       enumerable: true/false, //控制是否可被for in遍历
+			       configurable: true/false, //1. 控制是否可删除 //2. 控制是否可修改前两个特性
+			  }
+		
+		
+		​	
+		
+		- 强调:  `configurable` 一旦改为 `false` ，不可逆
+		
+	- 访问器属性
+		- 不实际存储数据，专门提供对其它数据/变量的保护
+		- 何时
+			- 1.用自定义规则保护属性时,比如:age属性必须介于18~65之间
+			
+	  	- 2.为对象添加虚拟属性:  fullName:获取时,firstName+lastName;赋值时,将fullName按空格分隔，一半给firstName，另一半给lastName
+	  	
+	    - 2步:
+	    	- 1.定义一个隐藏的数据属性实际存储属性值
+	        - 2.定义访问器属性专门读写隐藏的数据属性
+	      
+	    - 四大特性
+	      
+	        - ```js
+	          {
+	            	get:function(){
+	            		return this.隐藏属性;
+	            	},
+	            	set:function(val){
+	            		//如果val符合条件
+	            		this.隐藏属性 = val
+	            		//否则  报错
+	            	},
+	            	enumerable, 
+	            	configurable
+	            }
+	          ```
+	        
+	        - 试图用访问器属性读取受保护的值时，自动调用get方法
+	          
+	        - 试图用访问器属性修改受保护的值时，自动调用set方法，参数val可自动获得要赋的新值
+	          
+	        - 如果省略set方法，则该访问器属性相当于只读
+	
+- 获取一个属性的四大特性
+
+  - var attrs=Object.getOwnPropertyDescriptor(obj,"属性名")
+  - attrs: {四大特性}
+
+- 修改四大特性
+	                        						              				
+	- 只改一个属性的四大特性:
+		                        						              				
+		- ```js
+			Object.defineProperty(obj,"属性名"{
+				特性名:值,
+				//...
+			})
+			```
+		
+	- 同时修改多个属性的四大特性
+		                        						              				
+		- ```js
+		  Object.defineProperties(obj,{
+		  	属性名1: {
+		  		特性名:值,
+		  		... : ...
+		  	},
+		  	属性名2: {四大特性}
+		  })
+		  ```
+		
+		- 强调:
+		
+		  - 双保险
+		    - 修改writable或enumerable时，最好同时定义configurable为false，禁止反向修改
+		    - 要修改的属性不存在，会自动添加该属性
+		
+	- 特性的默认值
+	
+	  - 用.添加的新属性,特性的默认值为true
+	  - defineProperty/defineProperties添加的新属性,特性的默认值为false
+	                            			
+	
+##### 内部属性
+  - 不能用.访问到的属性
+  - __proto__
+    	- `Object.getPrototypeOf(obj)`
+		- `Object.setPrototypeOf(child,father)`
+  - class
+		- `Object.prototype.toString.call(obj)`
+  - extensible:true
+		- `var bool=Object.isExtensible(obj)`
+		- `Object.preventExtensions(obj)`
+                          		
+#### 防篡改
+
+
+- 1.防扩展
+	- 禁止添加新属性: 相当于,将对象的extensible：false
+	- 判断是否已禁止扩展: Object.isExtensible(obj)
+	- 设置防扩展：Object.preventExtensions(obj)
+- 2.密封
+    - 在防扩展同时，禁止删除现有属性:相当于,将每个属性的configurable:false,其他属性在修改特性时，不必反复修改configurable:false
+    
+    - 判断是否已密封: Object.isSealed(obj)
+    
+  - 密封对象: Object.seal(obj)
+	
+  - 最像Java的构造函数: 
+    	
+		```js
+	  	function Emp(id,ename,salary,age){
+		  	this.id = id;
+	    	this.ename = ename;
+	    	this.salary = salary;
+	  		Object.defineProperties(this,{
+				id:{writable:false},
+				salary:{enumerable:false},
+				_age:{
+					writable:true,
+					enumerable:false
+				},
+				age:{
+					get:function(){return this._age;},
+					set:function(val){
+						if(val<18||val>65) throw new Error(...)
+  					this._age = val;   
+  				},
+  				enumerable:true
+  				}
+  	  		});
+      		this.age=age;
+      		//防篡改:
+      		Object.seal(this);//密封
+    	} 
+    
+		```
+  - 鄙视:  实现一个 `js` 类型，包含 `public` 属性和 `private` 属性
+- 3.冻结
+    - 在密封同时，禁止修改所有属性的值，相当于，将每个属性的`writable:false`
+    - 判断是否被冻结：`Object.isFrozen(obj);`
+    - 冻结对象：`Object.freeze(obj)`
+    - 何时:：如果一个对象中所有属性值都不允许擅自修改
+
+### call/apply/bind()
+- 何时:  只要函数中的this不是想要的，就可用call/apply/bind替换
+- call和apply
+    - 立刻调用函数执行
+    - 同时临时替换函数中的this
+    - 何时:如果立刻执行，且临时替换this
+    - 如何
+		- fun.call(obj, 参数值列表)
+			- 调用fun
+			- 替换fun中的this为obj
+			- 将参数值列表传递给fun
+		- fun.apply(obj, 参数值数组)
+			- vs call
+				- apply要求传入fun的参数必须放在数组中整体传入
+				- apply可自动将数组打散为单个参数值分别传入
+- bind
+	- 基于一个现有函数，创建一个新函数，并永久绑定this和部分参数
+	- 何时:
+		- 只要替换回调函数中的this时
+    - 如何:
+		- `var newFun=fun.bind(obj, 参数值列表 )`
+			- 创建一个和fun功能完全一样的新函数
+			- 永久绑定新函数中的this为obj
+  			- 永久绑定新函数中的部分参数为参数值列表中的值
+		- 强调:被bind创建的函数中的this和绑定的变量，任何情况下不能再被 call 替换
+
+### 数组API
+- 判断
+  - 判断 `arr` 中每个元素是否都符合条件
+		```js
+		arr.every(function(val,i,arr){
+			//val: 当前元素值
+			//i : 当前位置
+			//arr : 当前数组
+			return 判断条件;
+		})
+		```
+  - 只判断 `arr` 中是否包含符合条件的元素
+		```js
+		arr.some(function(val,i,arr){
+			return 判断条件;
+		})
+		```
+- 遍历:对数组中每个元素执行相同的操作
+    - 直接修改原数组
+		```js
+		arr.forEach(function(val,i,arr){
+			arr[i]=新值;
+		})
+		```
+    	IE8
+		```js
+    	Array.prototype.forEach=function(callback){
+        	for(var i=0;i<this.length;i++){
+        	if(this[i]!==undefined)//防稀疏数组
+          		callback(this[i],i,this);
+    	    	}
+    		}
+		```
+    - 不修改原数组，返回新数组
+		```js
+		var newArr=arr.map(function(val,i,arr){
+			return 修改后的新值
+		})
+		```
+    	IE8
+		```js
+
+    	Array.prototype.map=function(callback){
+        	for(var i=0,result=[];i<this.length;i++){
+        		if(this[i]!==undefined)//防稀疏数组
+            	result[i]=callback(this[i],i,this);
+      		}
+    	    	return result;
+    		}
+		```
+		- 其实map也可像forEach一样使用
+  	- 回调函数中的this，指window
+
+- 过滤和汇总
+    - 过滤:选取arr中符合条件的元素组成新的子数组
+		```js
+		var subArr = arr.filter(function(val,i,arr){
+		  	return 判断条件
+		})
+		```
+- 汇总
+    - 将数组中每个元素值汇总出一个结果
+		```js
+		var r = arr.reduce(function(prev,val,i,arr){
+			return prev+val;
+		}, 初始值)
+		```
+### 严格模式
+- 何时:
+	- 1. 新项目，都要启用严格模式
+	- 2. 旧项目，逐个模块向严格模式迁移
+- 如何
+- 2个范围
+    - 整个代码块或 `js` 文件启用严格模式:在代码块或 `js` 文件的开头插入: "use strict";
+	- 仅在一个函数内启用严格模式:在 `function` 内，函数体顶部插入: "use strict";
+- 要求:
+	1. 禁止给未声明的变量赋值
+	2. 静默失败升级为错误
+	3. 普通函数调用或匿名函数自调中的 `this` 不再默认指向 `window` ，而是 `undefined`
+	4. `arguments`, `arguments.callee`不推荐使用
+
 
 ## 1.22 ES6
 
-模板字符串
-        简化
-            字符串拼接
-        反引号包裹的字符串`xxx`
-        支持换行
-        支持动态生成内容
-            在``中使用${js表达式}
-            模板字符串会自动执行js表达式的结果，并拼接到最终生成的普通字符串中
-let
-        声明一个仅在当前块中有效的变量
-        解决:
-        1. 为js添加了块级作用域
-                避免了块内的变量污染外部
-        2. 避免了声明提前
-                在同一作用域内，let前不允许提前使用未声明的同名变量
-        何时
-            今后都用let代替var
-箭头函数
-        简化:
-            回调函数
-        如何
-            去function，在()和{}之间加=>
-            更简化:
-            1. 如果只有一个参数，可省略()
-                但是，如果没有参数，必须保留空()
-            2. 如果函数体只有一句话，可省略{}
-                    更简化
-                        且一句话还是return
-                            则可省略return和{}
-    何时
-            几乎所有回调函数都可用箭头函数简化
-            反例
-						如果回调函数中的this和外部的this不相同时，不能简化
-						//this->window
-                        elem.addEventListener("click",function(){
-                                    //this->当前elem
-                        })
-							如果用箭头函数简化，结果内外this都是window
-							其实:
-								//this->window
-                                elem.addEventListener("click",e=>{
-                                            //this->window
-                                            //e.target->当前elem
-                                })
-for of
-    简化:
-            遍历索引数组和类数组对象
-    问题: 
-        1. 不支持关联数组和对象
-        2. 只能读取元素值，不能修改元素值
-                按值传递
-        3. 只能连续遍历所有
-    如何
-            for(var val of arr){
-                        val//当前元素值
-            }
+### 模板字符串
+- 简化,字符串拼接,
+- 反引号包裹的字符串`xxx`
+- 支持换行
+- 支持动态生成内容
+    - 在 ` ` 中使用 `${js表达式}`
+    - 模板字符串会自动执行 `js` 表达式的结果，并拼接到最终生成的普通字符串中
 
-参数增强
-    默认值
-            什么是
-                ES6中可给函数定义中形参列表的最后一个参数定义默认值
-            何时
-                如果函数只有最后一个形参不确定是否给值时
-            如何
-                function 函数名(形参1,形参2,...,形参n=默认值)
-                如果调用函数时，没有提供最后一个实参，就自动用默认值代替
-    剩余参数
-            什么是
-                代替arguments处理不确定参数个数的情况
-            为什么
-                arguments的两个问题
-                1. 不是数组类型，不能用数组的API
-                2. 只能全部获得实参值，不能有所选择
-        何时
-                当多个形参不确定给不给值时，但不要求实参与形参对应时
-        如何
-                定义函数时
-                    function 函数名(形参1,形参2,...数组名){
-                    //数组会接住除之前形参1和形参2之外所有剩余的实参值
-                    //保存剩余实参值的结构是一个纯正的数组，可用数组家全部API
-                    }
-        优点
-            1. 是纯正的数组类型，可用数组家全套API
-            2. 可获得部分实参值，不会与之前的形参变量争抢
+### `let`
+- 声明一个仅在当前块中有效的变量
+- 解决:
+	- 1.为 `js` 添加了块级作用域:  避免了块内的变量污染外部
+	- 2.避免了声明提前:  在同一作用域内， `let` 前不允许提前使用未声明的同名变量
+- 何时:  今后都用 `let` 代替 `var`
 
-打散数组
-    什么是
-            代替apply，将数组打散为单个值，传入函数中
-    为什么
-            apply的本职工作是替换this，顺便打散数组
-            如果用apply单纯打散数组，必须给定一个无意义的对象作为第一个参数
-    何时
-            当一个函数不支持数组参数，而给定的实参值却是放在一个数组中
-    如何
-            调用函数时
-                函数名(...数组)
-                先将数组打散为单个值，再将单个值传入函数中
+### 箭头函数
+- 简化: 回调函数
+- 如何
+    - 去 `function` ，在 `()` 和 `{}` 之间加 `=>`
+    - 更简化:
+        1. 如果只有一个参数，可省略`()`,但是，如果没有参数，必须保留空`()`
+        2. 如果函数体只有一句话，可省略`{}`
+            - 更简化:且一句话还是`return`, 则可省略`return`和`{}`
+- 何时
+	- 几乎所有回调函数都可用箭头函数简化
+    - 反例
+		- 如果回调函数中的 `this` 和外部的 `this` 不相同时，不能简化
+			```js
+			//this->window
+			elem.addEventListener("click",function(){
+			            //this->当前elem
+			})
+			```
+		- 如果用箭头函数简化，结果内外 `this` 都是 `window`
+		- 其实:
+			```js
+			//this->window
+			elem.addEventListener("click",e=>{
+			            //this->window
+			            //e.target->当前elem
+			})
+			```
 
-		解构
-			什么是：
-				提取出一个大对象的个别成员，单独使用
-			何时
-				只要仅使用大对象中的部分成员时，都用解构
-			如何
-				3种
-					1. 数组解构
-							下标对下标
-							什么是
-								提取出索引数组中指定位置的元素，保存在单独的变量中独立使用
-							如何
-								var date=[2019,5,6];
-	                            var [y,m,d]=date;
-	                            y=2019, m=5, d=6
-					2. 对象解构
-							属性对属性
-							什么是
-								仅提取出大对象中的个别成员属性或方法，保存在变量中，单独使用
-							如何
-								var lilei={
-	                                sname: "Li Lei", 
-	                                sage: 11, 
-	                                signin:function(){ 登录... },
-	                                signout:function(){ 注销... }
-	                            }
-								var {sname:sname, signin:signin}=lilei
-									简写
-										如果属性名和变量名相同，只写一个即可
-										var {sname, signin}=lilei
-								        变量sname="Li Lei";
-	                                    变量signin=function(){ 登录... }
-					3. 参数解构
-							什么是
-								将所有参数都定义在一个对象结构中，调用函数传参时，也是讲所有实参值都放在一个对象中传入
-							何时
-								多个形参不确定给不给时，且要求实参值必须传给指定搞得形参变量
-							如何
-								2步
-									1. 在定义函数时，将所有形参放在一个对象结构中
-										function ajax({
-	                 url:url,
-	                 type:type,
-	                 data:data,
-	                 dataType:dataType
-}){
-                     ... ...
-}
-											简写为
-												function ajax({url,type,data,dataType}){
-                     ... ...
-}
-											结果:
-												函数中
-													形参url获得实参url的值"http://localhost:3000/users/signup"
-													形参type获得实参type的值“post”
-													形参data获得实参data的值"uname=dingding&upwd=123456"
-													形参dataType获得实参dataType的值"json"
-									2. 在调用函数时，所有实参也必须放在相同结构的对象中
-										ajax({
-                        url:"http://localhost:3000/users/signup",
-                        type:"post",
-                        data:"uname=dingding&upwd=123456",
-                        dataType:"json"
-})
-							优点
-							1. 无论有多少参数不确定，都不会报语法错误
-								如果解构时，实参列表中缺少参数，则函数中对应的形参变量获得undefined
-							2. 实参列表和形参列表只要名称对应即可，没有必然顺序
-									参数解构其实就是对象解构在函数调用时的应用而已
-		class
-			简化:
-				面向对象
-					封装,继承,多态
-			如何
-				封装
-					对象{}
-							如果一个属性的值来自于外部的变量，且属性名刚好等于变量名，则{}中只写一个名字即可
-							对象中的方法不能简写为箭头函数，但可去掉":function"
-					class
-						1. 用“class 类型名{}”包裹原来的构造函数和原型对象方法
-						2. 修改构造函数的“function 函数名”为“constructor”
-						3. 原型对象方法: 
-								可省略开头的“类型.prototype”
-								可省略方法名后的"=function"
-						4. 添加访问器属性: 
-								在构造函数的平级
-								get 访问器属性名(){ 
-              return this.受保护的其他属性
-}
-								set 访问器属性名(val){
-              if(条件)
-                              this.受保护的属性=val
-              else
-                              报错
-}
-				继承
-					0. 不用再设置Object.setPrototypeOf
-					1. 在"class 类型名"后添加" extends 父类型"
-					2. 在构造函数中借用父类型构造函数
-						不用call/apply，不用加this
-						super(属性值列表)
-		Promises
-			为什么
-				避免callback hell
-			何时
-				只要要求，下一个函数必须在前一个函数执行后，才能开始执行时
-			如何
-				2步
-					定义时
-						前一个函数
-							不用在参数中添加callback
-							在函数内返回Promise对象
-								return new Promise((resolve, reject)=>{
-                        如果正确，就继续调用resolve()
-                        否则，就调用reject("错误提示")
-})
-									Promise的参数中是一个函数
-										函数封装了原函数正常的逻辑
-										函数由两个回调函数参数
-											resolve
-												在正常执行后，调用
-													.then()
-											reject
-												在出错时，调用
-													.catch()
-					连续调用两个函数时
-						前一个函数()
-.then(function(){return 下一个函数()})
-.catch((err)=>{错误处理函数})
-							不要加()
-						ES7
-							(async function(){
-                  try{
-                              var result=await 异步调用1()
-                              await 异步调用2()
-                  }catch(err){
-                              错误处理...
-                  }
-})()
-			多个函数需要连续调用，每个函数，都要返回Promise对象，才能连续用then调用
-			如果需要等待多个函数执行完，才执行:
-				Promise.all([
-                  函数1(),
-                  函数2(),
-        ... ... ,
-]).then(end)
+### `for of`
+- 简化: 遍历索引数组和类数组对象
+- 问题: 
+    1. 不支持关联数组和对象
+    2. 只能读取元素值，不能修改元素值，按值传递
+    3. 只能连续遍历所有
+- 如何
+	```js
+	for(var val of arr){
+	            val//当前元素值
+	}
+	```
 
+### 参数增强
+
+#### 默认值
+- 什么是:ES6中可给函数定义中形参列表的最后一个参数定义默认值
+- 何时:如果函数只有最后一个形参不确定是否给值时
+- 如何
+    - `function 函数名(形参1,形参2,...,形参n=默认值)`
+    - 如果调用函数时，没有提供最后一个实参，就自动用默认值代替
+
+#### 剩余参数
+- 什么是：代替arguments处理不确定参数个数的情况
+- 为什么： arguments的两个问题
+    1. 不是数组类型，不能用数组的API
+    2. 只能全部获得实参值，不能有所选择
+- 何时：当多个形参不确定给不给值时，但不要求实参与形参对应时
+- 如何：定义函数时
+	```js
+	function 函数名(形参1,形参2,...数组名){
+	//数组会接住除之前形参1和形参2之外所有剩余的实参值
+	//保存剩余实参值的结构是一个纯正的数组，可用数组家全部API
+	}
+	```
+- 优点
+    1. 是纯正的数组类型，可用数组家全套API
+    2. 可获得部分实参值，不会与之前的形参变量争抢
+
+#### 打散数组
+- 什么是：代替apply，将数组打散为单个值，传入函数中
+- 为什么
+    - apply的本职工作是替换this，顺便打散数组
+    - 如果用apply单纯打散数组，必须给定一个无意义的对象作为第一个参数
+- 何时
+    - 当一个函数不支持数组参数，而给定的实参值却是放在一个数组中
+- 如何
+    - 调用函数时
+        - 函数名(...数组)
+        - 先将数组打散为单个值，再将单个值传入函数中
+
+### 解构
+- 什么是： 提取出一个大对象的个别成员，单独使用
+- 何时： 只要仅使用大对象中的部分成员时，都用解构
+- 如何 3种：
+    1. 数组解构
+    	- 下标对下标
+    	- 什么是：提取出索引数组中指定位置的元素，保存在单独的变量中独立使用
+    	- 如何
+			```js
+			var date = [2019,5,6];
+			var [y,m,d] = date;
+			y = 2019, m = 5, d = 6
+			```
+    2. 对象解构
+    	- 属性对属性
+    	- 什么是:仅提取出大对象中的个别成员属性或方法，保存在变量中，单独使用
+    	- 如何
+    		```js
+    		var lilei={
+    		    sname: "Li Lei", 
+    		    sage: 11, 
+    		    signin:function(){ 登录... },
+    		    signout:function(){ 注销... }
+    		}
+    		```
+    		```js
+    		var {sname:sname, signin:signin} = lilei
+    		```
+    		- 简写
+    		- 如果属性名和变量名相同，只写一个即可
+    		```js
+    		var {sname, signin}=lilei
+    		变量sname="Li Lei";
+    		变量signin=function(){ 登录... }
+    		```
+    3. 参数解构
+		- 什么是:将所有参数都定义在一个对象结构中，调用函数传参时，也是讲所有实参值都放在一个对象中传入
+		- 何时:多个形参不确定给不给时，且要求实参值必须传给指定搞得形参变量
+		- 如何:2步
+			- 1.在定义函数时，将所有形参放在一个对象结构中
+				```js
+				function ajax({
+					url:url,
+					type:type,
+					data:data,
+					dataType:dataType
+				}){
+				    //... ...
+				}
+				```
+				简写为
+				```js
+				function ajax({url,type,data,dataType}){
+				    //... ...
+				}
+				```
+				结果:函数中
+				> 形参url获得实参url的值"http://localhost:3000/users/signup"
+				> 形参type获得实参type的值“post”
+				> 形参data获得实参data的值"uname=dingding&upwd=123456"
+				> 形参dataType获得实参dataType的值"json"
+        	- 2.在调用函数时，所有实参也必须放在相同结构的对象中
+				````js
+				ajax({
+				    url:"http://localhost:3000/users/signup",
+				    type:"post",
+				    data:"uname=dingding&upwd=123456",
+				    dataType:"json"
+				})
+			```
+- 优点
+	1. 无论有多少参数不确定，都不会报语法错误
+		如果解构时，实参列表中缺少参数，则函数中对应的形参变量获得 `undefined`
+	2. 实参列表和形参列表只要名称对应即可，没有必然顺序
+		参数解构其实就是对象解构在函数调用时的应用而已
+
+### `class`
+- 简化: 面向对象,封装,继承,多态
+- 如何
+	- 封装
+		- 对象{}
+			- 如果一个属性的值来自于外部的变量，且属性名刚好等于变量名，则{}中只写一个名字即可
+			- 对象中的方法不能简写为箭头函数，但可去掉":function"
+		- class
+			1. 用“class 类型名{}”包裹原来的构造函数和原型对象方法
+			2. 修改构造函数的“function 函数名”为“constructor”
+			3. 原型对象方法: 
+				- 可省略开头的“类型.prototype”
+				- 可省略方法名后的"=function"
+			4. 添加访问器属性: 
+				- 在构造函数的平级
+				- `get 访问器属性名(){  return this.受保护的其他属性 }`
+				- `set 访问器属性名(val){ if(条件) this.受保护的属性=val;else  报错 }`
+	- 继承
+		1. 不用再设置`Object.setPrototypeOf`
+		2. 在"`class` 类型名"后添加" `extends` 父类型"
+		3. 在构造函数中借用父类型构造函数
+			- 不用`call`/`apply`，不用加`this`
+			- `super(属性值列表)`
+
+### `Promises`
+- 为什么：避免callback hell
+- 何时：只要要求，下一个函数必须在前一个函数执行后，才能开始执行时
+- 如何 2步
+	- 定义时,前一个函数,不用在参数中添加callback,在函数内返回Promise对象
+		```js
+		return new Promise((resolve, reject)=>{
+			如果正确，就继续调用resolve()
+			否则，就调用reject("错误提示")
+		})
+		```
+		- Promise的参数中是一个函数，函数封装了原函数正常的逻辑，函数由两个回调函数参数
+    	- resolve,在正常执行后，调用  .then()
+    	- reject 在出错时，调用  .catch()
+
+	- 连续调用两个函数时
+		```js
+		前一个函数()
+		.then(function(){
+			return 下一个函数()
+			})
+		.catch((err)=>{
+			错误处理函数
+		})
+		```
+		ES7
+
+		```js
+		(async function(){
+		    try{
+		        var result=await 异步调用1()
+		        await 异步调用2()
+		    }catch(err){
+		        //错误处理...
+		    }
+		})()
+		```
+		- 多个函数需要连续调用，每个函数，都要返回Promise对象，才能连续用then调用
+		- 如果需要等待多个函数执行完，才执行:
+			```js
+			Promise.all([
+				函数1(),
+				函数2(),
+				//... ... ,
+			]).then(end)
+			```

@@ -276,6 +276,7 @@ new Vue({
 	- 如何选择：目前哪种写法都可以，以后学习到组件时，`data`必须使用函数式，否则会报错。
 
 - 3.一个重要的原则：
+	
 	- 由`Vue`管理的函数(比如：`data`)，一定不要写箭头函数，一旦写了箭头函数，`this`就不再是`Vue`实例了。
 
 **`html`**
@@ -3546,7 +3547,7 @@ module.exports = {
                          },
                      }
                  </script>
-			```
+		  ```
 
 
 ## `Vuex`
@@ -4677,9 +4678,41 @@ npm run dev
 
 - 自定义hook的优势: 复用代码, 让setup中的逻辑更清楚易懂。
 
+代码  src/hooks/savaPoint.js
+
+```js
+import {reactive,onMounted,onBeforeUnmount} from 'vue'
+export default function (){
+	//实现鼠标“打点”相关的数据
+	let point = reactive({
+		x:0,
+		y:0
+	})
+
+	//实现鼠标“打点”相关的方法
+	function savePoint(event){
+		point.x = event.pageX
+		point.y = event.pageY
+		console.log(event.pageX,event.pageY)
+	}
+
+	//实现鼠标“打点”相关的生命周期钩子
+	onMounted(()=>{
+		window.addEventListener('click',savePoint)
+	})
+
+	onBeforeUnmount(()=>{
+		window.removeEventListener('click',savePoint)
+	})
+
+	return point
+}
+
+```
 
 
-## 10.toRef
+
+## 10. `toRef`
 
 - 作用：创建一个 ref 对象，其value值指向另一个对象中的某个属性。
 - 语法：```const name = toRef(person,'name')```
@@ -4687,6 +4720,51 @@ npm run dev
 
 
 - 扩展：```toRefs``` 与```toRef```功能一致，但可以批量创建多个 ref 对象，语法：```toRefs(person)```
+
+```js
+//toRef
+setup(){
+	//数据
+	let person = reactive({
+		name:'张三',
+		age:18,
+		job:{
+			j1:{
+				salary:20
+			}
+		}
+	})
+	//返回一个对象（常用）
+	return {
+		name:toRef(person,'name'),
+		age:toRef(person,'age'),
+		salary:toRef(person.job.j1,'salary'),
+	}
+}
+```
+
+```js
+//toRefs  批量创建 ref 对象
+setup(){
+	//数据
+	let person = reactive({
+		name:'张三',
+		age:18,
+		job:{
+			j1:{
+				salary:20
+			}
+		}
+	})
+	const x = toRefs(person)
+	//返回一个对象（常用）
+	return {
+		person,//不常用的
+		...toRefs(person)//常用的交出去
+	}
+}
+```
+
 
 
 # 三、其它 Composition API
@@ -4842,17 +4920,6 @@ npm run dev
 <div style="width:430px;height:340px;overflow:hidden;float:left">
     <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6cc55165c0e34069a75fe36f8712eb80~tplv-k3u1fbpfcp-watermark.image"style="height:360px"/>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 # 五、新的组件
