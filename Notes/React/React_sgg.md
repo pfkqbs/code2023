@@ -617,15 +617,15 @@ ReactDOM.render(<Weather />,document.getElementById('test'))
 
 #### 2.6.5. 重要的勾子
 
-- 1.render：初始化渲染或更新渲染调用
-- 2.componentDidMount：开启监听, 发送ajax请求
-- 3.componentWillUnmount：做一些收尾工作, 如: 清理定时器
+- 1.`render`：初始化渲染或更新渲染调用
+- 2.`componentDidMount`：开启监听, 发送`ajax`请求
+- 3.`componentWillUnmount`：做一些收尾工作, 如: 清理定时器
 
 #### 2.6.6. 即将废弃的勾子
 
-- 1.componentWillMount
-- 2.componentWillReceiveProps
-- 3.componentWillUpdate
+- 1.`componentWillMount`
+- 2.`componentWillReceiveProps`
+- 3.`componentWillUpdate`
 
 现在使用会出现警告，下一个大版本需要加上UNSAFE_前缀才能使用，以后可能会被彻底废弃，不建议使用。
 
